@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /**
- * 
+ * Created by ~~~ itzme ~~~ 
  */
 public class NetConnect {
     static Boolean sync = false;
@@ -41,11 +41,7 @@ public class NetConnect {
         if (calu != null)
            Log.w("THE RESPONSE VALUE", calu);
         else Log.e("NetConnect()", "Task Response is NULL");
-
-
     }
-
-
 
     public String getRes(){
         if (calu != null) {
@@ -57,18 +53,16 @@ public class NetConnect {
         return "Task Returns NULL. Read from cal";
     }
 
-
     public class netco extends AsyncTask<String, String, String>{
 
         @Override
         protected void onPreExecute() {
-
             sync = false;
             Log.w("Sync", "FALSE");
             Handler handler =  new Handler(context.getMainLooper());
             handler.post(new Runnable() {
                 public void run() {
-                    //Toast.makeText(context, "Connection Timeout. Please Try again!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Dialog SHOW..", Toast.LENGTH_LONG).show();
                     pDialog = new ProgressDialog(context);
                     pDialog.setMessage("Loading...");
                     pDialog.setTitle("Please Wait");
@@ -85,7 +79,13 @@ public class NetConnect {
             //super.onPostExecute(s);
             sync = true;
             Log.w("Sync", "TRUE");
-            pDialog.dismiss();
+            Handler handler =  new Handler(context.getMainLooper());
+            handler.post(new Runnable() {
+                public void run() {
+                    Toast.makeText(context, "Dialog DISMISS..", Toast.LENGTH_LONG).show();
+                    pDialog.dismiss();
+                }
+            });
             if (s != null)
                 Log.w("PostExecute", "s: "+s);
         }
